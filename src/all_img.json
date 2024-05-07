@@ -1,0 +1,201 @@
+{
+    "train": {
+
+        "bachbien": [
+
+            "bb/bb_0001.jpg",
+            "bb/bb_0002.jpg",
+            "bb/bb_0003.jpg",
+            "bb/bb_0004.jpg",
+            "bb/bb_0005.jpg",
+            "bb/bb_0006.jpg",
+            "bb/bb_0007.jpg",
+            "bb/bb_0008.jpg",
+            "bb/bb_0009.jpg",
+            "bb/bb_0010.jpg"
+        ],
+        "hacto": [
+            "ht/ht_0001.jpg",
+            "ht/ht_0002.jpg",
+            "ht/ht_0003.jpg",
+            "ht/ht_0004.jpg",
+            "ht/ht_0005.jpg",
+            "ht/ht_0006.jpg",
+            "ht/ht_0007.jpg",
+            "ht/ht_0008.jpg",
+            "ht/ht_0009.jpg",
+            "ht/ht_0010.jpg"
+        ],
+        "vaynen": [
+            "vn/vn_0001.jpg",
+            "vn/vn_0002.jpg",
+            "vn/vn_0003.jpg",
+            "vn/vn_0004.jpg",
+            "vn/vn_0005.jpg",
+            "vn/vn_0006.jpg",
+            "vn/vn_0007.jpg",
+            "vn/vn_0008.jpg",
+            "vn/vn_0009.jpg",
+            "vn/vn_0010.jpg"
+    
+        ],
+        "muncoc": [
+            "mc/mc_0001.jpg",
+            "mc/mc_0002.jpg",
+            "mc/mc_0003.jpg",
+            "mc/mc_0004.jpg",
+            "mc/mc_0005.jpg",
+            "mc/mc_0006.jpg",
+            "mc/mc_0007.jpg",
+            "mc/mc_0008.jpg",
+            "mc/mc_0009.jpg",
+            "mc/mc_0010.jpg"
+    
+        ],
+        "trungcado": [
+            "tcd/tcd_0001.jpg",
+            "tcd/tcd_0002.jpg",
+            "tcd/tcd_0003.jpg",
+            "tcd/tcd_0004.jpg",
+            "tcd/tcd_0005.jpg",
+            "tcd/tcd_0006.jpg",
+            "tcd/tcd_0007.jpg",
+            "tcd/tcd_0008.jpg",
+            "tcd/tcd_0009.jpg",
+            "tcd/tcd_0010.jpg"  
+        ]
+    },
+
+    "valid": {
+        "bachbien": [
+
+            "bb/bb_0001.jpg",
+            "bb/bb_0002.jpg",
+            "bb/bb_0003.jpg",
+            "bb/bb_0004.jpg",
+            "bb/bb_0005.jpg",
+            "bb/bb_0006.jpg",
+            "bb/bb_0007.jpg",
+            "bb/bb_0008.jpg",
+            "bb/bb_0009.jpg",
+            "bb/bb_0010.jpg"
+        ],
+        "hacto": [
+            "ht/ht_0001.jpg",
+            "ht/ht_0002.jpg",
+            "ht/ht_0003.jpg",
+            "ht/ht_0004.jpg",
+            "ht/ht_0005.jpg",
+            "ht/ht_0006.jpg",
+            "ht/ht_0007.jpg",
+            "ht/ht_0008.jpg",
+            "ht/ht_0009.jpg",
+            "ht/ht_0010.jpg"
+        ],
+        "vaynen": [
+            "vn/vn_0001.jpg",
+            "vn/vn_0002.jpg",
+            "vn/vn_0003.jpg",
+            "vn/vn_0004.jpg",
+            "vn/vn_0005.jpg",
+            "vn/vn_0006.jpg",
+            "vn/vn_0007.jpg",
+            "vn/vn_0008.jpg",
+            "vn/vn_0009.jpg",
+            "vn/vn_0010.jpg"
+    
+        ],
+        "muncoc": [
+            "mc/mc_0001.jpg",
+            "mc/mc_0002.jpg",
+            "mc/mc_0003.jpg",
+            "mc/mc_0004.jpg",
+            "mc/mc_0005.jpg",
+            "mc/mc_0006.jpg",
+            "mc/mc_0007.jpg",
+            "mc/mc_0008.jpg",
+            "mc/mc_0009.jpg",
+            "mc/mc_0010.jpg"
+    
+        ],
+        "trungcado": [
+            "tcd/tcd_0001.jpg",
+            "tcd/tcd_0002.jpg",
+            "tcd/tcd_0003.jpg",
+            "tcd/tcd_0004.jpg",
+            "tcd/tcd_0005.jpg",
+            "tcd/tcd_0006.jpg",
+            "tcd/tcd_0007.jpg",
+            "tcd/tcd_0008.jpg",
+            "tcd/tcd_0009.jpg",
+            "tcd/tcd_0010.jpg"  
+        ]
+    },
+    "test": {
+        "bachbien": [
+
+            "bb/bb_001.jpg",
+            "bb/bb_002.jpg",
+            "bb/bb_003.jpg",
+            "bb/bb_004.jpg",
+            "bb/bb_005.jpg",
+            "bb/bb_006.jpg",
+            "bb/bb_007.jpg",
+            "bb/bb_008.jpg",
+            "bb/bb_009.jpg",
+            "bb/bb_010.jpg"
+        ],
+        "hacto": [
+            "ht/ht_001.jpg",
+            "ht/ht_002.jpg",
+            "ht/ht_003.jpg",
+            "ht/ht_004.jpg",
+            "ht/ht_005.jpg",
+            "ht/ht_006.jpg",
+            "ht/ht_007.jpg",
+            "ht/ht_008.jpg",
+            "ht/ht_009.jpg",
+            "ht/ht_010.jpg"
+        ],
+        "vaynen": [
+            "vn/vn_001.jpg",
+            "vn/vn_002.jpg",
+            "vn/vn_003.jpg",
+            "vn/vn_004.jpg",
+            "vn/vn_005.jpg",
+            "vn/vn_006.jpg",
+            "vn/vn_007.jpg",
+            "vn/vn_008.jpg",
+            "vn/vn_009.jpg",
+            "vn/vn_010.jpg"
+    
+        ],
+        "muncoc": [
+            "mc/mc_001.jpg",
+            "mc/mc_002.jpg",
+            "mc/mc_003.jpg",
+            "mc/mc_004.jpg",
+            "mc/mc_005.jpg",
+            "mc/mc_006.jpg",
+            "mc/mc_007.jpg",
+            "mc/mc_008.jpg",
+            "mc/mc_009.jpg",
+            "mc/mc_010.jpg"
+    
+        ],
+        "trungcado": [
+            "tcd/tcd_001.jpg",
+            "tcd/tcd_002.jpg",
+            "tcd/tcd_003.jpg",
+            "tcd/tcd_004.jpg",
+            "tcd/tcd_005.jpg",
+            "tcd/tcd_006.jpg",
+            "tcd/tcd_007.jpg",
+            "tcd/tcd_008.jpg",
+            "tcd/tcd_009.jpg",
+            "tcd/tcd_010.jpg"  
+        ]
+    }
+    }
+
+
