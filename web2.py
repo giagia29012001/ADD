@@ -521,7 +521,6 @@ def main():
                                                     # Cắt ảnh
                                                 cropped_img = img_bhyt.crop((x_min, y_min, x_max, y_max))
                                                     # Hiển thị ảnh gốc và ảnh đã cắt
-                                                cropped_img = cv2.cvtColor(cropped_img, cv2.COLOR_BGR2RGB)
                                                 st.image(cropped_img, use_column_width=True)
 
                                 else:
