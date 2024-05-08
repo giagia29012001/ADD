@@ -548,9 +548,11 @@ def main():
                                         img_res = cv2.cvtColor(img_res, cv2.COLOR_BGR2RGB)
                                         st.image(img_res, use_column_width=True)
 
-                                        df = results.pandas().xyxy[0]                                   
+                                        df = results.pandas().xyxy[0]     
+                                        del df['class']
                                         st.write(df)
                                         st.header("Thông tin trích xuất từ ảnh BHYT")
+                                        
                                         des = set()
                                         for name_type in df['name']:
                                             if name_type not in des:
@@ -592,8 +594,8 @@ def main():
                                                             text_name= "HỌ VÀ TÊN: "+text   
                                                             # Hiển thị kết quả
                                                             st.write(text_name)
-                                                if name_type == 'birth':
-                                                    id_rows = df[df['name'] == 'birth']
+                                                if name_type == 'sex':
+                                                    id_rows = df[df['name'] == 'sex']
 
                                                     for index, row in id_rows.iterrows():
                                                         if row['confidence'] >=0.5:
@@ -611,8 +613,8 @@ def main():
                                                             text_birth= "NGÀY THÁNG NĂM SINH: "+text
                                                             # Hiển thị kết quả
                                                             st.write(text_birth)
-                                                if name_type == 'sex':
-                                                    id_rows = df[df['name'] == 'sex']
+                                                if name_type == 'birth':
+                                                    id_rows = df[df['name'] == 'birth']
 
                                                     for index, row in id_rows.iterrows():
                                                         if row['confidence'] >=0.5:
@@ -638,6 +640,7 @@ def main():
 
                                                     for index, row in id_rows.iterrows():
                                                         if row['confidence'] >=0.5:
+                                                            st.write(row['confidence'])
                                                             x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
                                                                 # Cắt ảnh
                                                             cropped_img = rotated_image.crop((x_min, y_min, x_max, y_max))
