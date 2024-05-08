@@ -485,44 +485,44 @@ def main():
                                             type='Không có dữ liệu để mô tả!'
                                         st.write(type)
 
-                                else:
-                                    st.error('Không có dữ liệu. Vui lòng chọn một hình ảnh hiện trạng trên da')
+                            else:
+                                st.error('Không có dữ liệu. Vui lòng chọn một hình ảnh hiện trạng trên da')
 
-                                if file_img_bhyt:
-                                   if os.path.isdir('./runs'):
-                                        shutil.rmtree('./runs')
+                            if file_img_bhyt:
+                                if os.path.isdir('./runs'):
+                                    shutil.rmtree('./runs')
                                        
-                                    results = get_prediction(img_bhyt, model_swap)
-                                    results.save()
-                                    img_res = cv2.imread('./runs/detect/exp/image0.jpg')
-                                    img_res = cv2.cvtColor(img_res, cv2.COLOR_BGR2RGB)
-                                    df = results.pandas().xyxy[0]
-                                    del df['class']
-                                    des = set()
-                                    x_qr, y_qr, x_bhyt, y_bhyt ='','','',''
-                                    cropped_img, rotated_image = '',''
-                                    for name_type in df['name']:
-                                        if name_type not in des:
-                                            if name_type == 'qr':
-                                                id_rows = df[df['name'] == 'qr']
+                                results = get_prediction(img_bhyt, model_swap)
+                                results.save()
+                                img_res = cv2.imread('./runs/detect/exp/image0.jpg')
+                                img_res = cv2.cvtColor(img_res, cv2.COLOR_BGR2RGB)
+                                df = results.pandas().xyxy[0]
+                                del df['class']
+                                des = set()
+                                x_qr, y_qr, x_bhyt, y_bhyt ='','','',''
+                                cropped_img, rotated_image = '',''
+                                for name_type in df['name']:
+                                    if name_type not in des:
+                                        if name_type == 'qr':
+                                            id_rows = df[df['name'] == 'qr']
                                                     # Lặp qua từng hàng trong DataFrame với 'name_type' là 'qr'
-                                                for index, row in id_rows.iterrows():
-                                                    x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
-                                                    data_qr=find_point(x_min, y_min, x_max, y_max)
-                                                    x_qr, y_qr = data_qr[0]['x'], data_qr[0]['y']
+                                            for index, row in id_rows.iterrows():
+                                                x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
+                                                data_qr=find_point(x_min, y_min, x_max, y_max)
+                                                x_qr, y_qr = data_qr[0]['x'], data_qr[0]['y']
 
-                                            if name_type == 'bhyt':
-                                                id_rows = df[df['name'] == 'bhyt']
+                                        if name_type == 'bhyt':
+                                            id_rows = df[df['name'] == 'bhyt']
                                                     # Lặp qua từng hàng trong DataFrame với 'name_type' là 'bhyt'
-                                                for index, row in id_rows.iterrows():
-                                                    x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
-                                                    data_bhyt=find_point(x_min, y_min, x_max, y_max)
-                                                    x_bhyt, y_bhyt = data_bhyt[0]['x'], data_bhyt[0]['y']                                
+                                            for index, row in id_rows.iterrows():
+                                                x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
+                                                data_bhyt=find_point(x_min, y_min, x_max, y_max)
+                                                x_bhyt, y_bhyt = data_bhyt[0]['x'], data_bhyt[0]['y']                                
                                                     # Cắt ảnh
-                                                    cropped_img = img_bhyt.crop((x_min, y_min, x_max, y_max))
+                                                cropped_img = img_bhyt.crop((x_min, y_min, x_max, y_max))
                                                     # Hiển thị ảnh gốc và ảnh đã cắt
-                                                    cropped_img = cv2.cvtColor(cropped_img, cv2.COLOR_BGR2RGB)
-                                                    st.image(cropped_img, use_column_width=True)
+                                                cropped_img = cv2.cvtColor(cropped_img, cv2.COLOR_BGR2RGB)
+                                                st.image(cropped_img, use_column_width=True)
 
                                 else:
                                     st.error('Không có dữ liệu. Vui lòng chọn một hình ảnh bảo hiểm y tế trên ứng dụng VssID')
