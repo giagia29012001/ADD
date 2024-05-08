@@ -492,8 +492,7 @@ def main():
                                     st.error('Không có dữ liệu. Vui lòng chọn một hình ảnh hiện trạng trên da')
 
                                 if file_img_bhyt:
-                                    img_res = cv2.cvtColor(img_bhyt, cv2.COLOR_BGR2RGB)
-                                    st.image(img_res, use_column_width=True)
+                                    st.image(img_bhyt, use_column_width=True)
                                     if os.path.isdir('./runs'):
                                         shutil.rmtree('./runs')
                                     x_qr, y_qr, x_bhyt, y_bhyt ='','','',''
