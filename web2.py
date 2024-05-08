@@ -655,7 +655,6 @@ def main():
                         else:
                             st.warning('Vui lòng cung cấp đầy đủ thông tin.')
 
-
     elif select_page == "HỦY LỊCH ĐÃ ĐẶT":
             col1, col2 = st.columns([8.1, 4])
             with col2:
