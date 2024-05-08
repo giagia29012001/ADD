@@ -589,8 +589,7 @@ def main():
                                                             image=cropped_img
                                                             # Trích xuất văn bản sử dụng pytesseract
                                                             text = pytesseract.image_to_string(image)
-                                                            text_name= "HỌ VÀ TÊN: "+text
-    
+                                                            text_name= "HỌ VÀ TÊN: "+text   
                                                             # Hiển thị kết quả
                                                             st.write(text_name)
                                                 if name_type == 'birth':
@@ -644,6 +643,7 @@ def main():
                                                             # Thêm viền đen cho hình ảnh
                                                             cropped_img = ImageOps.expand(cropped_img, border=border_size, fill='white')
                                                             image=cropped_img
+                                                            st.image(image, use_column_width=True)
     
                                                             # Trích xuất văn bản sử dụng pytesseract
                                                             text = pytesseract.image_to_string(image)
