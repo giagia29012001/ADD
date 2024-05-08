@@ -615,6 +615,7 @@ def main():
 
                                                     for index, row in id_rows.iterrows():
                                                         if row['confidence'] >=0.5:
+                                                            st.write(row['confidence'])
                                                             x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
                                                                 # Cắt ảnh
                                                             cropped_img = rotated_image.crop((x_min, y_min, x_max, y_max))
