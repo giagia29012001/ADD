@@ -526,8 +526,6 @@ def main():
                                                         data_bhyt= find_point(x_min, y_min, x_max, y_max)
                                                         x_bhyt, y_bhyt = data_bhyt[0]['x'], data_bhyt[0]['y']
                                                         st.write(data_bhyt)
-
-                                                st.write(data_qr)
                                                 st.write(x_qr)
                                         
                         else:
