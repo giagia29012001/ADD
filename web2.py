@@ -517,7 +517,7 @@ def main():
                                                         x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
                                                         data_qr= find_point(x_min, y_min, x_max, y_max)
                                                         x_qr, y_qr = data_qr[0]['x'], data_qr[0]['y']
-                                                        
+                                                        st.write(data_qr)
                                                 if name_type == 'bhyt':
                                                     id_rows = df[df['name'] == 'bhyt']
                                                     for index, row in id_rows.iterrows():
@@ -525,8 +525,8 @@ def main():
                                                         cropped_img = img_bhyt.crop((x_min, y_min, x_max, y_max))
                                                         data_bhyt= find_point(x_min, y_min, x_max, y_max)
                                                         x_bhyt, y_bhyt = data_bhyt[0]['x'], data_bhyt[0]['y']
-            
-                                                st.image(cropped_img, use_column_width=True)
+                                                        st.write(data_bhyt)
+                                        
                         else:
                             st.warning('Vui lòng cung cấp đầy đủ thông tin.')
 
