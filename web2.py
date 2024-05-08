@@ -622,11 +622,11 @@ def main():
                                                             image=cropped_img
                                                             # Trích xuất văn bản sử dụng pytesseract
                                                             text = pytesseract.image_to_string(image)
-                                                            if text : 
+                                                            if text is None: 
                                                             # Hiển thị kết quả
-                                                                text_sex= "GIỚI TÍNH: " +text
+                                                                text_sex= "GIỚI TÍNH: Nữ" 
                                                             else: 
-                                                                text_sex="GIỚI TÍNH : Nữ"
+                                                                text_sex="GIỚI TÍNH :" +text
 
                                                 if name_type == 'place':
                                                     id_rows = df[df['name'] == 'place']
