@@ -492,6 +492,8 @@ def main():
                                     st.error('Không có dữ liệu. Vui lòng chọn một hình ảnh hiện trạng trên da')
 
                                 if file_img_bhyt:
+                                    img_res = cv2.cvtColor(img_bhyt, cv2.COLOR_BGR2RGB)
+                                    st.image(img_res, use_column_width=True)
                                     if os.path.isdir('./runs'):
                                         shutil.rmtree('./runs')
                                     x_qr, y_qr, x_bhyt, y_bhyt ='','','',''
@@ -501,9 +503,6 @@ def main():
                                         
                                     img_res = cv2.imread('./runs/detect/exp/image0.jpg')
                                     if img_res is not None:
-                                        img_res = cv2.cvtColor(img_res, cv2.COLOR_BGR2RGB)
-
-                                        st.image(img_res, use_column_width=True)
 
                                         df = results.pandas().xyxy[0]
                                         del df['class']
@@ -538,7 +537,6 @@ def main():
                                         else:
                                             rotated_image = cropped_img.rotate(90, expand=True)
                                             
-                                        st.image(rotated_image, use_column_width=True)
                                     if os.path.exists('./runs'):
                                         shutil.rmtree('./runs')
                                             
