@@ -571,8 +571,82 @@ def main():
                                                             # Trích xuất văn bản sử dụng pytesseract
                                                         text = pytesseract.image_to_string(image)
                                                         text_id="MÃ BHYT: "+text
+                                                        
+                                            if name_type == 'name':
+                                                id_rows = df[df['name'] == 'name']
+                                                
+                                                for index, row in id_rows.iterrows():
+                                                    if row['confidence']>=0.5:
+                                                        x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
+                                                            # Cắt ảnh
+                                                        cropped_img = rotated_image.crop((x_min, y_min, x_max, y_max))
+                                                        border_size = 10
+                                                        # Thêm viền đen cho hình ảnh
+                                                        cropped_img = ImageOps.expand(cropped_img, border=border_size, fill='white')
+                                                        image=cropped_img
+                                                        # Trích xuất văn bản sử dụng pytesseract
+                                                        text = pytesseract.image_to_string(image)
+                                                        text_name= "HỌ VÀ TÊN: "+text
+
+                                        
+                                            if name_type == 'sex':
+                                                id_rows = df[df['name'] == 'sex']
+                                                for index, row in id_rows.iterrows():
+                                                    if row['confidence']>=0.5:
+                                                        x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
+                                                            # Cắt ảnh
+                                                        cropped_img = rotated_image.crop((x_min, y_min, x_max, y_max))
+                                                        border_size = 10
+                                                        # Thêm viền đen cho hình ảnh
+                                                        cropped_img = ImageOps.expand(cropped_img, border=border_size, fill='white')
+                                                        image=cropped_img
+
+                                                        # Trích xuất văn bản sử dụng pytesseract
+                                                        text = pytesseract.image_to_string(image)
+                                                        text_birth= "NGÀY THÁNG NĂM SINH: "+text
+                                                   
+                                            if name_type == 'birth':
+                                                id_rows = df[df['name'] == 'birth']
+                                                for index, row in id_rows.iterrows():
+                                                    if row['confidence']>=0.5:
+                                                        x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
+                                                            # Cắt ảnh
+                                                        cropped_img = rotated_image.crop((x_min, y_min, x_max, y_max))
+                                                        border_size = 30
+                                                        # Thêm viền đen cho hình ảnh
+                                                        cropped_img = ImageOps.expand(cropped_img, border=border_size, fill='white')
+                                                        image=cropped_img
+                                                        # Trích xuất văn bản sử dụng pytesseract
+                                                        text = pytesseract.image_to_string(image)
+                                                        if text: 
+                                                        # Hiển thị kết quả
+                                                            text_sex= "GIỚI TÍNH: "+text
+                                                        else: 
+                                                            text_sex="GIỚI TÍNH : Nữ"
+                                                       
+                                            if name_type == 'place':
+                                                id_rows = df[df['name'] == 'place']
+                                                
+                                                for index, row in id_rows.iterrows():
+                                                    if row['confidence']>=0.5:
+                                                        x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
+                                                            # Cắt ảnh
+                                                        cropped_img = rotated_image.crop((x_min, y_min, x_max, y_max))
+                                                        border_size = 10
+                                                        # Thêm viền đen cho hình ảnh
+                                                        cropped_img = ImageOps.expand(cropped_img, border=border_size, fill='white')
+                                                        image=cropped_img
+
+                                                        # Trích xuất văn bản sử dụng pytesseract
+                                                        text = pytesseract.image_to_string(image)
+                                                        text_place= "NƠI KHÁM CHỮA BỆNH BAN ĐẦU: "+text
+                                                
                                 # Hiển thị kết quả
                                 st.write(text_id)
+                                st.write(text_name)
+                                st.write(text_sex)
+                                st.write(text_birth)
+                                st.write(text_place)
 
 
                             else:
