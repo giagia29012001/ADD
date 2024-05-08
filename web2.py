@@ -650,11 +650,11 @@ def main():
                                                             text = pytesseract.image_to_string(image)
                                                             text_place= "NƠI KHÁM CHỮA BỆNH BAN ĐẦU: "+text
                                                  # Hiển thị kết quả
-                                                st.write(text_id)
-                                                st.write(text_name)
-                                                st.write(text_sex)
-                                                st.write(text_birth)
-                                                st.write(text_place)
+                                        st.write(text_id)
+                                        st.write(text_name)
+                                        st.write(text_sex)
+                                        st.write(text_birth)
+                                        st.write(text_place)
                                 else:
                                     st.error('Không có dữ liệu. Vui lòng chọn một hình ảnh bảo hiểm y tế trên ứng dụng VssID')
 
