@@ -618,6 +618,7 @@ def main():
                                                         image=cropped_img
                                                         # Trích xuất văn bản sử dụng pytesseract
                                                         text = pytesseract.image_to_string(image)
+                                                        st.write(text)
                                                         if text: 
                                                         # Hiển thị kết quả
                                                             text_sex= "GIỚI TÍNH: "+text
