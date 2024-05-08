@@ -546,7 +546,7 @@ def main():
                                     img_res = cv2.cvtColor(img_res, cv2.COLOR_BGR2RGB)
                                     st.image(img_res, use_column_width=True)
 
-                                    .df = results.pandas().xyxy[0]
+                                    df = results.pandas().xyxy[0]
                                     del df['class']
                                     st.write(df)
                                     st.header("Thông tin trích xuất từ ảnh BHYT")
