@@ -620,7 +620,7 @@ def main():
                                                         text = pytesseract.image_to_string(image)
                                                         st.write("a")
                                                         st.write(text)
-                                                        if text: 
+                                                        if text=='Nam'||text=='Nữ': 
                                                         # Hiển thị kết quả
                                                             text_sex= "GIỚI TÍNH: "+text
                                                         else: 
