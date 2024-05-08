@@ -463,6 +463,9 @@ def main():
                                     des = set()
                                     for name_type in df['name']:
                                         if name_type not in des:
+                                            img_res = cv2.cvtColor(img_res, cv2.COLOR_BGR2RGB)
+                                            st.image(img_res, use_column_width=True)
+                                            
                                                 # Xử lý hiển thị mô tả cho từng loại bệnh
                                             if name_type == 'muncoc':
                                                 type='Kết quả chuẩn đoán sơ bộ: Mụn cóc'
@@ -488,6 +491,174 @@ def main():
                                 else:
                                     st.error('Không có dữ liệu. Vui lòng chọn một hình ảnh hiện trạng trên da')
 
+                                if file_img_bhyt:
+                                    if os.path.isdir('./runs'):
+                                        shutil.rmtree('./runs')
+                                    x_qr, y_qr, x_bhyt, y_bhyt ='','','',''
+                                    cropped_img , rotated_image = '',''
+                                    results = get_prediction(img_bhyt, model_swap)
+                                    results.save()
+                                        
+                                    img_res = cv2.imread('./runs/detect/exp/image0.jpg')
+                                    if img_res is not None:
+                                        img_res = cv2.cvtColor(img_res, cv2.COLOR_BGR2RGB)
+
+                                        st.image(img_res, use_column_width=True)
+
+                                        df = results.pandas().xyxy[0]
+                                        del df['class']
+
+                                        des = set()
+                                        for name_type in df['name']:
+                                            if name_type not in des:
+                                                if name_type == 'qr':
+                                                    id_rows = df[df['name'] == 'qr']
+                                                    for index, row in id_rows.iterrows():
+                                                        x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
+                                                        data_qr= find_point(x_min, y_min, x_max, y_max)
+                                                        x_qr, y_qr = data_qr[0]['x'], data_qr[0]['y']
+                                                        
+                                                if name_type == 'bhyt':
+                                                    id_rows = df[df['name'] == 'bhyt']
+                                                    for index, row in id_rows.iterrows():
+                                                        x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
+                                                        cropped_img = img_bhyt.crop((x_min, y_min, x_max, y_max))
+                                                        data_bhyt= find_point(x_min, y_min, x_max, y_max)
+                                                        x_bhyt, y_bhyt = data_bhyt[0]['x'], data_bhyt[0]['y']
+
+                                                if x_qr > x_bhyt and y_qr < y_bhyt:
+                                                    rotated_image = cropped_img.rotate(180, expand=True)
+            
+                                                elif x_qr < x_bhyt and y_qr > y_bhyt:
+                                                    rotated_image = cropped_img
+                                                elif x_qr > x_bhyt and y_qr > y_bhyt:
+                                                    rotated_image = cropped_img.rotate(-90, expand=True)
+                                                else:
+                                                    rotated_image = cropped_img.rotate(90, expand=True)
+            
+                                                st.image( rotated_image, use_column_width=True)
+            
+                                                if os.path.exists('./runs'):
+                                                    shutil.rmtree('./runs')
+                                                        
+                                                results = get_prediction(rotated_image, model_inf)
+                                                results.save()
+                
+                                                st.header("Đây là kết quả phát hiện!")
+                
+                                                img_res = cv2.imread('./runs/detect/exp/image0.jpg')
+                          
+                                                                                    if img_res is not None:
+                                        img_res = cv2.cvtColor(img_res, cv2.COLOR_BGR2RGB)
+
+                                        st.image(img_res, use_column_width=True)
+
+                                        df = results.pandas().xyxy[0]
+                                        del df['class']
+                                        st.write(df)
+                                        st.header("Thông tin trích xuất từ ảnh BHYT")
+
+                                        des = set()
+                                        for name_type in df['name']:
+                                            if name_type not in des:
+                                                            # Xử lý hiển thị mô tả cho từng loại bệnh
+                                                if name_type == 'id':
+                                                    id_rows = df[df['name'] == 'id']
+
+                                                    # Lặp qua từng hàng trong DataFrame với 'name_type' là 'id'
+                                                    for index, row in id_rows.iterrows():
+                                                        x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
+                                                            # Cắt ảnh
+                                                        cropped_img = rotated_image.crop((x_min, y_min, x_max, y_max))
+                                                        border_size = 10
+                                                        # Thêm viền đen cho hình ảnh
+                                                        cropped_img = ImageOps.expand(cropped_img, border=border_size, fill='white')
+                                                        image=cropped_img
+
+                                                        # Trích xuất văn bản sử dụng pytesseract
+                                                        text = pytesseract.image_to_string(image)
+                                                        text_id="MÃ BHYT: "+text
+                                                        # Hiển thị kết quả
+                                                        st.write(text_id)
+                                                if name_type == 'name':
+                                                    id_rows = df[df['name'] == 'name']
+
+                                                    # Lặp qua từng hàng trong DataFrame với 'name_type' là 'id'
+                                                    for index, row in id_rows.iterrows():
+                                                        x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
+                                                            # Cắt ảnh
+                                                        cropped_img = rotated_image.crop((x_min, y_min, x_max, y_max))
+                                                        border_size = 10
+                                                        # Thêm viền đen cho hình ảnh
+                                                        cropped_img = ImageOps.expand(cropped_img, border=border_size, fill='white')
+                                                        image=cropped_img
+                                                        # Trích xuất văn bản sử dụng pytesseract
+                                                        text = pytesseract.image_to_string(image)
+                                                        text_name= "HỌ VÀ TÊN: "+text
+
+                                                        # Hiển thị kết quả
+                                                        st.write(text_name)
+                                                if name_type == 'birth':
+                                                    id_rows = df[df['name'] == 'birth']
+
+                                                    # Lặp qua từng hàng trong DataFrame với 'name_type' là 'id'
+                                                    for index, row in id_rows.iterrows():
+                                                        x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
+                                                            # Cắt ảnh
+                                                        cropped_img = rotated_image.crop((x_min, y_min, x_max, y_max))
+                                                        border_size = 10
+                                                        # Thêm viền đen cho hình ảnh
+                                                        cropped_img = ImageOps.expand(cropped_img, border=border_size, fill='white')
+                                                        image=cropped_img
+
+                                                        # Trích xuất văn bản sử dụng pytesseract
+                                                        text = pytesseract.image_to_string(image)
+                                                        text_birth= "NGÀY THÁNG NĂM SINH: "+text
+                                                        # Hiển thị kết quả
+                                                        st.write(text_birth)
+                                                if name_type == 'sex':
+                                                    id_rows = df[df['name'] == 'sex']
+
+                                                    # Lặp qua từng hàng trong DataFrame với 'name_type' là 'id'
+                                                    for index, row in id_rows.iterrows():
+                                                        x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
+                                                            # Cắt ảnh
+                                                        cropped_img = rotated_image.crop((x_min, y_min, x_max, y_max))
+                                                        border_size = 30
+                                                        # Thêm viền đen cho hình ảnh
+                                                        cropped_img = ImageOps.expand(cropped_img, border=border_size, fill='white')
+                                                        image=cropped_img
+                                                        # Trích xuất văn bản sử dụng pytesseract
+                                                        text = pytesseract.image_to_string(image)
+                                                        if text: 
+                                                        # Hiển thị kết quả
+                                                            text_sex= "GIỚI TÍNH: "+text
+                                                        else: 
+                                                            text_sex="GIỚI TÍNH : Nữ"
+                                                        st.write(text_sex)
+
+                                                        # Hiển thị kết quả
+                                                if name_type == 'place':
+                                                    id_rows = df[df['name'] == 'place']
+
+                                                    # Lặp qua từng hàng trong DataFrame với 'name_type' là 'id'
+                                                    for index, row in id_rows.iterrows():
+                                                        x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
+                                                            # Cắt ảnh
+                                                        cropped_img = rotated_image.crop((x_min, y_min, x_max, y_max))
+                                                        border_size = 10
+                                                        # Thêm viền đen cho hình ảnh
+                                                        cropped_img = ImageOps.expand(cropped_img, border=border_size, fill='white')
+                                                        image=cropped_img
+
+                                                        # Trích xuất văn bản sử dụng pytesseract
+                                                        text = pytesseract.image_to_string(image)
+                                                        text_place= "NƠI KHÁM CHỮA BỆNH BAN ĐẦU: "+text
+                                                        # Hiển thị kết quả
+                                                        st.write(text_place)
+                                else:
+                                    st.error('Không có dữ liệu. Vui lòng chọn một hình ảnh bảo hiểm y tế trên ứng dụng VssID')
+                                
                                 os.makedirs(directory)
                                 file_booking = f"Ngày đặt lịch: {selected_date}\nGiờ đặt lịch: {selected_time.strftime('%H:%M')}\n{type}"
                                 with open(file_path, "w", encoding="utf-8") as f:
