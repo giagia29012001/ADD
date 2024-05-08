@@ -554,26 +554,26 @@ def main():
                                         des = set()
                                         for name_type in df['name']:
                                             if name_type not in des:
-                                                # Xử lý hiển thị mô tả cho từng loại bệnh
+                                                           
                                                 if name_type == 'id':
-                                                    for conf in df['confidence']:
-                                                        if conf >=0.5
-                                                            id_rows = df[df['name'] == 'id']
-                                                            # Lặp qua từng hàng trong DataFrame với 'name_type' là 'id'
-                                                            for index, row in id_rows.iterrows():
-                                                                x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
-                                                                    # Cắt ảnh
-                                                                cropped_img = rotated_image.crop((x_min, y_min, x_max, y_max))
-                                                                border_size = 10
-                                                                # Thêm viền đen cho hình ảnh
-                                                                cropped_img = ImageOps.expand(cropped_img, border=border_size, fill='white')
-                                                                image=cropped_img
-        
-                                                                # Trích xuất văn bản sử dụng pytesseract
-                                                                text = pytesseract.image_to_string(image)
-                                                                text_id="MÃ BHYT: "+text
-                                                                # Hiển thị kết quả
-                                                                st.write(text_id)
+                                                    id_rows = df[df['name'] == 'id']
+
+                                                    # Lặp qua từng hàng trong DataFrame với 'name_type' là 'id'
+                                                    for index, row in id_rows.iterrows():
+                                                        if row['confidnece'] >=0.5
+                                                            x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
+                                                                # Cắt ảnh
+                                                            cropped_img = rotated_image.crop((x_min, y_min, x_max, y_max))
+                                                            border_size = 10
+                                                            # Thêm viền đen cho hình ảnh
+                                                            cropped_img = ImageOps.expand(cropped_img, border=border_size, fill='white')
+                                                            image=cropped_img
+    
+                                                            # Trích xuất văn bản sử dụng pytesseract
+                                                            text = pytesseract.image_to_string(image)
+                                                            text_id="MÃ BHYT: "+text
+                                                            # Hiển thị kết quả
+                                                            st.write(text_id)
 
                         
                         else:
