@@ -617,7 +617,8 @@ def main():
                                                         cropped_img = ImageOps.expand(cropped_img, border=border_size, fill='white')
                                                         image=cropped_img
                                                         # Trích xuất văn bản sử dụng pytesseract
-                                                        text = pytesseract.image_to_string(image)
+                                                        text = pytesseract.image_to_string(image
+                                                        st.write("a")
                                                         st.write(text)
                                                         if text: 
                                                         # Hiển thị kết quả
