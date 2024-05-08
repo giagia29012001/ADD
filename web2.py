@@ -496,7 +496,7 @@ def main():
                                         shutil.rmtree('./runs')
                                     x_qr, y_qr, x_bhyt, y_bhyt ='','','',''
                                     cropped_img , rotated_image = '',''
-                                    text_id,text_name,text_birth,text_sex, text_place='','','','',''
+                                    text,text_id,text_name,text_birth,text_sex, text_place='','','','','',''
                                     results = get_prediction(img_bhyt, model_swap)
                                     results.save()
                                         
@@ -622,11 +622,11 @@ def main():
                                                             image=cropped_img
                                                             # Trích xuất văn bản sử dụng pytesseract
                                                             text = pytesseract.image_to_string(image)
-                                                            if text is None: 
+                                                            if text is not None: 
                                                             # Hiển thị kết quả
-                                                                text_sex= "GIỚI TÍNH: Nữ" 
+                                                                text_sex= "GIỚI TÍNH: "+text 
                                                             else: 
-                                                                text_sex="GIỚI TÍNH :" +text
+                                                                text_sex="GIỚI TÍNH : Nữ"
 
                                                 if name_type == 'place':
                                                     id_rows = df[df['name'] == 'place']
