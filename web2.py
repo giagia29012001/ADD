@@ -600,11 +600,12 @@ def main():
                                                             x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
                                                                 # Cắt ảnh
                                                             cropped_img = rotated_image.crop((x_min, y_min, x_max, y_max))
+                                                            
                                                             border_size = 10
                                                             # Thêm viền đen cho hình ảnh
                                                             cropped_img = ImageOps.expand(cropped_img, border=border_size, fill='white')
                                                             image=cropped_img
-    
+                                                            st.image(image, use_column_width=True)
                                                             # Trích xuất văn bản sử dụng pytesseract
                                                             text = pytesseract.image_to_string(image)
                                                             text_birth= "NGÀY THÁNG NĂM SINH: "+text
