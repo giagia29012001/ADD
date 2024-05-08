@@ -526,7 +526,22 @@ def main():
                                                         data_bhyt= find_point(x_min, y_min, x_max, y_max)
                                                         x_bhyt, y_bhyt = data_bhyt[0]['x'], data_bhyt[0]['y']
                                                         st.write(data_bhyt)
-                                                st.write(x_qr)
+                          
+                                                if x_qr > x_bhyt and y_qr < y_bhyt:
+                                                    rotated_image = cropped_img.rotate(180, expand=True)
+            
+                                                elif x_qr < x_bhyt and y_qr > y_bhyt:
+                                                    rotated_image = cropped_img
+            
+                                                elif x_qr > x_bhyt and y_qr > y_bhyt:
+                                                    rotated_image = cropped_img.rotate(-90, expand=True)
+            
+                                                else:
+                                                    rotated_image = cropped_img.rotate(90, expand=True)
+                                                #ảnh sau khi xoay
+                                                st.image( rotated_image, use_column_width=True)
+
+    
                                         
                         else:
                             st.warning('Vui lòng cung cấp đầy đủ thông tin.')
