@@ -492,11 +492,11 @@ def main():
                                     st.error('Không có dữ liệu. Vui lòng chọn một hình ảnh hiện trạng trên da')
 
                                 if file_img_bhyt:
-                                    st.image(img_bhyt, use_column_width=True)
                                     if os.path.isdir('./runs'):
                                         shutil.rmtree('./runs')
                                     x_qr, y_qr, x_bhyt, y_bhyt ='','','',''
                                     cropped_img , rotated_image = '',''
+                                    text_id,text_name,text_birth,text_sex, text_place='','','','',''
                                     results = get_prediction(img_bhyt, model_swap)
                                     results.save()
                                         
@@ -550,7 +550,6 @@ def main():
 
                                         df = results.pandas().xyxy[0]     
                                         del df['class']
-                                        st.write(df)
                                         st.header("Thông tin trích xuất từ ảnh BHYT")
                                         
                                         des = set()
@@ -575,8 +574,7 @@ def main():
                                                             # Trích xuất văn bản sử dụng pytesseract
                                                             text = pytesseract.image_to_string(image)
                                                             text_id="MÃ BHYT: "+text
-                                                            # Hiển thị kết quả
-                                                            st.write(text_id)
+                                                            
                                                 if name_type == 'name':
                                                     id_rows = df[df['name'] == 'name']
 
@@ -592,8 +590,7 @@ def main():
                                                             # Trích xuất văn bản sử dụng pytesseract
                                                             text = pytesseract.image_to_string(image)
                                                             text_name= "HỌ VÀ TÊN: "+text   
-                                                            # Hiển thị kết quả
-                                                            st.write(text_name)
+                                                           
                                                 if name_type == 'sex':
                                                     id_rows = df[df['name'] == 'sex']
 
@@ -611,8 +608,7 @@ def main():
                                                             # Trích xuất văn bản sử dụng pytesseract
                                                             text = pytesseract.image_to_string(image)
                                                             text_birth= "NGÀY THÁNG NĂM SINH: "+text
-                                                            # Hiển thị kết quả
-                                                            st.write(text_birth)
+                                                            
                                                 if name_type == 'birth':
                                                     id_rows = df[df['name'] == 'birth']
 
@@ -633,7 +629,7 @@ def main():
                                                                 text_sex= "GIỚI TÍNH: "+text
                                                             else: 
                                                                 text_sex="GIỚI TÍNH : Nữ"
-                                                            st.write(text_sex)
+                                                            
 
                                                 if name_type == 'place':
                                                     id_rows = df[df['name'] == 'place']
@@ -653,8 +649,12 @@ def main():
                                                             # Trích xuất văn bản sử dụng pytesseract
                                                             text = pytesseract.image_to_string(image)
                                                             text_place= "NƠI KHÁM CHỮA BỆNH BAN ĐẦU: "+text
-                                                            # Hiển thị kết quả
-                                                            st.write(text_place)
+                                                 # Hiển thị kết quả
+                                                st.write(text_id)
+                                                st.write(text_name)
+                                                st.write(text_sex)
+                                                st.write(text_birth)
+                                                st.write(text_place)
                                 else:
                                     st.error('Không có dữ liệu. Vui lòng chọn một hình ảnh bảo hiểm y tế trên ứng dụng VssID')
 
