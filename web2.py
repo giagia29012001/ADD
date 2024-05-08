@@ -560,7 +560,8 @@ def main():
 
                                                     # Lặp qua từng hàng trong DataFrame với 'name_type' là 'id'
                                                     for index, row in id_rows.iterrows():
-                                                        if row['confidnece'] >=0.5
+                                        
+                                                        if row['confidence'] >=0.5
                                                             x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
                                                                 # Cắt ảnh
                                                             cropped_img = rotated_image.crop((x_min, y_min, x_max, y_max))
