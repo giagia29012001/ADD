@@ -491,6 +491,7 @@ def main():
                                 if file_img_bhyt:
                                    if os.path.isdir('./runs'):
                                         shutil.rmtree('./runs')
+                                       
                                     results = get_prediction(img_bhyt, model_swap)
                                     results.save()
                                     img_res = cv2.imread('./runs/detect/exp/image0.jpg')
