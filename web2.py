@@ -622,8 +622,8 @@ def main():
                                                             image=cropped_img
                                                             # Trích xuất văn bản sử dụng pytesseract
                                                             text = pytesseract.image_to_string(image)
-                                                            if text is not None: 
-                                                            # Hiển thị kết quả
+                                                            if text : 
+                                                                # Hiển thị kết quả
                                                                 text_sex= "GIỚI TÍNH: "+text 
                                                             else: 
                                                                 text_sex="GIỚI TÍNH : Nữ"
