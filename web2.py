@@ -525,20 +525,8 @@ def main():
                                                         cropped_img = img_bhyt.crop((x_min, y_min, x_max, y_max))
                                                         data_bhyt= find_point(x_min, y_min, x_max, y_max)
                                                         x_bhyt, y_bhyt = data_bhyt[0]['x'], data_bhyt[0]['y']
-                                                        st.write(data_bhyt)
                           
-                                                if x_qr > x_bhyt and y_qr < y_bhyt:
-                                                    rotated_image = cropped_img.rotate(180, expand=True)
-            
-                                                elif x_qr < x_bhyt and y_qr > y_bhyt:
-                                                    rotated_image = cropped_img
-            
-                                                elif x_qr > x_bhyt and y_qr > y_bhyt:
-                                                    rotated_image = cropped_img.rotate(-90, expand=True)
-            
-                                                else:
-                                                    rotated_image = cropped_img.rotate(90, expand=True)
-                                                #ảnh sau khi xoay
+                                                st.write(x_bhyt)
                                                 st.image( rotated_image, use_column_width=True)
 
     
