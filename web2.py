@@ -498,6 +498,7 @@ def main():
                                     df = results.pandas().xyxy[0]
                                     del df['class']
                                     des = set()
+                                    x_qr, y_qr, x_bhyt, y_bhyt ='','','',''
                                     for name_type in df['name']:
                                         if name_type not in des:
                                             if name_type == 'qr':
