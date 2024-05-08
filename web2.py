@@ -622,12 +622,11 @@ def main():
                                                             image=cropped_img
                                                             # Trích xuất văn bản sử dụng pytesseract
                                                             text = pytesseract.image_to_string(image)
-                                                            if text: 
+                                                            if text : 
                                                             # Hiển thị kết quả
-                                                                text_sex= "GIỚI TÍNH: "+text
+                                                                text_sex= "GIỚI TÍNH: " +text
                                                             else: 
                                                                 text_sex="GIỚI TÍNH : Nữ"
-                                                            
 
                                                 if name_type == 'place':
                                                     id_rows = df[df['name'] == 'place']
@@ -652,10 +651,20 @@ def main():
                                         st.write(text_place)
                                 else:
                                     st.error('Không có dữ liệu. Vui lòng chọn một hình ảnh bảo hiểm y tế trên ứng dụng VssID')
-
-                                                
-
-                        
+                                
+                                os.makedirs(directory)
+                                file_booking = f"Ngày đặt lịch: {selected_date}\nGiờ đặt lịch: {selected_time.strftime('%H:%M')}\n{type}"
+                                with open(file_path, "w", encoding="utf-8") as f:
+                                    f.write(file_booking)
+                                img.save(f'{directory}/diseases_image.jpg')
+                                file_mail = f'{directory}/{mail}.txt'
+                                with open( file_mail, "w", encoding="utf-8") as f:
+                                    f.write(mail)
+                                subject = "XÁC NHẬN ĐĂNG KÍ LỊCH KHÁM BỆNH"
+                                body= "Bạn đã đăng kí lịch khám bệnh thành công trên website ADD.\n"+read_file(file_path)+"\nVui lòng kiểm tra thông tin bên trên và phản hồi về cho chúng tôi qua mục liên hệ khi có bất cứ nhầm lẫn nào"
+                                recipients=mail
+                                send_email(subject, body, recipients)
+                                st.success("Chúng tôi đã gửi thông tin xác nhận đăng kí về mail. Vui lòng kiểm tra mail!")
                         else:
                             st.warning('Vui lòng cung cấp đầy đủ thông tin.')
 
