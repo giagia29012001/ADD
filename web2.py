@@ -548,34 +548,32 @@ def main():
                                         img_res = cv2.cvtColor(img_res, cv2.COLOR_BGR2RGB)
                                         st.image(img_res, use_column_width=True)
 
-                                        df = results.pandas().xyxy[0]
-                                    
+                                        df = results.pandas().xyxy[0]                                   
                                         st.write(df)
                                         st.header("Thông tin trích xuất từ ảnh BHYT")
-
                                         des = set()
-                                        
                                         for name_type in df['name']:
                                             if name_type not in des:
-                                                            # Xử lý hiển thị mô tả cho từng loại bệnh
+                                                # Xử lý hiển thị mô tả cho từng loại bệnh
                                                 if name_type == 'id':
-                                                    id_rows = df[df['name'] == 'id']
-
-                                                    # Lặp qua từng hàng trong DataFrame với 'name_type' là 'id'
-                                                    for index, row in id_rows.iterrows():
-                                                        x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
-                                                            # Cắt ảnh
-                                                        cropped_img = rotated_image.crop((x_min, y_min, x_max, y_max))
-                                                        border_size = 10
-                                                        # Thêm viền đen cho hình ảnh
-                                                        cropped_img = ImageOps.expand(cropped_img, border=border_size, fill='white')
-                                                        image=cropped_img
-
-                                                        # Trích xuất văn bản sử dụng pytesseract
-                                                        text = pytesseract.image_to_string(image)
-                                                        text_id="MÃ BHYT: "+text
-                                                        # Hiển thị kết quả
-                                                        st.write(text_id)
+                                                    for conf in df['confidence']:
+                                                        if conf >=0.5
+                                                            id_rows = df[df['name'] == 'id']
+                                                            # Lặp qua từng hàng trong DataFrame với 'name_type' là 'id'
+                                                            for index, row in id_rows.iterrows():
+                                                                x_min, y_min, x_max, y_max = row['xmin'], row['ymin'], row['xmax'], row['ymax']
+                                                                    # Cắt ảnh
+                                                                cropped_img = rotated_image.crop((x_min, y_min, x_max, y_max))
+                                                                border_size = 10
+                                                                # Thêm viền đen cho hình ảnh
+                                                                cropped_img = ImageOps.expand(cropped_img, border=border_size, fill='white')
+                                                                image=cropped_img
+        
+                                                                # Trích xuất văn bản sử dụng pytesseract
+                                                                text = pytesseract.image_to_string(image)
+                                                                text_id="MÃ BHYT: "+text
+                                                                # Hiển thị kết quả
+                                                                st.write(text_id)
 
                         
                         else:
