@@ -374,7 +374,7 @@ def main():
                 else:
                     st.error('Không có dữ liệu. Vui lòng chọn một hình ảnh hoặc video về bệnh da liễu!')
 
-    elif select_page == "TRANG CHỦ":
+       elif select_page == "TRANG CHỦ":
             col1, col2 = st.columns([8.1, 4])
             file_img, file_img_bhyt ='',''
             type = ""
@@ -459,12 +459,10 @@ def main():
                                     img_res = cv2.imread('./runs/detect/exp/image0.jpg')
 
                                     df = results.pandas().xyxy[0]
+                                    name_type=df['name'].item()
                                     des = set()
                                     for name_type in df['name']:
                                         if name_type not in des:
-                                            img_res = cv2.cvtColor(img_res, cv2.COLOR_BGR2RGB)
-                                            st.image(img_res, use_column_width=True)
-                                            
                                                 # Xử lý hiển thị mô tả cho từng loại bệnh
                                             if name_type == 'muncoc':
                                                 type='Kết quả chuẩn đoán sơ bộ: Mụn cóc'
@@ -489,6 +487,7 @@ def main():
 
                                 else:
                                     st.error('Không có dữ liệu. Vui lòng chọn một hình ảnh hiện trạng trên da')
+                                    
                                 if file_img_bhyt:
                                     if os.path.isdir('./runs'):
                                         shutil.rmtree('./runs')
