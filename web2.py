@@ -549,11 +549,12 @@ def main():
                                         st.image(img_res, use_column_width=True)
 
                                         df = results.pandas().xyxy[0]
-                                        del df['class']
+                                    
                                         st.write(df)
                                         st.header("Thông tin trích xuất từ ảnh BHYT")
 
                                         des = set()
+                                        
                                         for name_type in df['name']:
                                             if name_type not in des:
                                                             # Xử lý hiển thị mô tả cho từng loại bệnh
