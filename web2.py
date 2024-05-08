@@ -520,11 +520,23 @@ def main():
                                                 x_bhyt, y_bhyt = data_bhyt[0]['x'], data_bhyt[0]['y']                                
                                                     # Cắt ảnh
                                                 cropped_img = img_bhyt.crop((x_min, y_min, x_max, y_max))
-                                                    # Hiển thị ảnh gốc và ảnh đã cắt
-                                                st.image(cropped_img, use_column_width=True)
+                                if x_qr > x_bhyt and y_qr < y_bhyt:
+                                    rotated_image = cropped_img.rotate(180, expand=True)
+
+                                elif x_qr < x_bhyt and y_qr > y_bhyt:
+                                    rotated_image = cropped_img
+
+                                elif x_qr > x_bhyt and y_qr > y_bhyt:
+                                    rotated_image = cropped_img.rotate(-90, expand=True)
 
                                 else:
-                                    st.error('Không có dữ liệu. Vui lòng chọn một hình ảnh bảo hiểm y tế trên ứng dụng VssID')
+                                    rotated_image = cropped_img.rotate(90, expand=True)
+                                    #ảnh sau khi xoay
+                                st.image( rotated_image, use_column_width=True)
+
+
+                            else:
+                                st.error('Không có dữ liệu. Vui lòng chọn một hình ảnh bảo hiểm y tế trên ứng dụng VssID')
                                 
                         else:
                             st.warning('Vui lòng cung cấp đầy đủ thông tin.')
