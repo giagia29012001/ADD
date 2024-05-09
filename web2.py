@@ -542,13 +542,14 @@ def main():
                                             
                                 results = get_prediction(rotated_image, model_inf)
                                 results.save()
-
+                                df = results.pandas().xyxy[0]
+                                label_mapping = {'sex': 'birth', 'birth': 'sex'}
+                                df['name'] = df['name'].map(label_mapping).fillna(df['name'])
                                 img_res = cv2.imread('./runs/detect/exp/image0.jpg')
                                 if img_res is not None:
 
                                     img_res = cv2.cvtColor(img_res, cv2.COLOR_BGR2RGB)
                                     st.image(img_res, use_column_width=True)
-                                    df = results.pandas().xyxy[0]
                                     del df['class']
 
                                     des = set()
