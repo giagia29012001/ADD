@@ -618,8 +618,8 @@ def main():
                                                         image=cropped_img
                                                         # Trích xuất văn bản sử dụng pytesseract
                                                         text = pytesseract.image_to_string(image)
-                                                        st.write("a")
-                                                        st.write("a "+text)
+                                                        
+                                                        st.write(text +'a')
                                                         if text=='Nam' or text=='Nữ': 
                                                         # Hiển thị kết quả
                                                             text_sex= "GIỚI TÍNH: "+text
