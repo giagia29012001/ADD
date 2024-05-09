@@ -1,7 +1,7 @@
 
 
 >**Bước 1**:
-Nhập số mail của bạn (quan trong!!). 
+Nhập mail của bạn (quan trong!!). 
 
 >**Bước 2**:
 Chọn thời gian khám bệnh "Chọn ngày", "Chọn lịch", "Chọn giờ".
