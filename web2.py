@@ -495,7 +495,8 @@ def main():
                             if file_img_bhyt:
                                 if os.path.isdir('./runs'):
                                     shutil.rmtree('./runs')
-                                st.image(img_bhyt, use_column_width=True)       
+                               
+                                st.header("Thông tin trích xuất từ ảnh BHYT")
                                 results = get_prediction(img_bhyt, model_swap)
                                 results.save()
                                 img_res = cv2.imread('./runs/detect/exp/image0.jpg')
@@ -546,10 +547,9 @@ def main():
                                 if img_res is not None:
 
                                     img_res = cv2.cvtColor(img_res, cv2.COLOR_BGR2RGB)
-
+                                    st.image(img_bhyt, use_column_width=True)
                                     df = results.pandas().xyxy[0]
                                     del df['class']
-                                    st.header("Thông tin trích xuất từ ảnh BHYT")
 
                                     des = set()
                                     for name_type in df['name']:
