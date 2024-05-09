@@ -26,6 +26,10 @@ def load_model_swap(path: str='weights/best_swap.pt'):
 @st.cache()
 def load_model_inf(path: str='weights/best_inf.pt'):
     model = torch.hub.load('ultralytics/yolov5', 'custom', path = path)
+    label_mapping = {'sex': 'birth', 'birth': 'sex'}
+    # Thực hiện việc thay đổi tên nhãn trong mô hình
+    for i, (old_label, new_label) in enumerate(label_mapping.items()):
+        model.names[model.names.index(old_label)] = new_label
     return model
 
 @st.cache()
@@ -543,8 +547,6 @@ def main():
                                 results = get_prediction(rotated_image, model_inf)
                                 results.save()
                                 df = results.pandas().xyxy[0]
-                                label_mapping = {'sex': 'birth', 'birth': 'sex'}
-                                df['name'] = df['name'].map(label_mapping).fillna(df['name'])
                                 img_res = cv2.imread('./runs/detect/exp/image0.jpg')
                                 if img_res is not None:
 
