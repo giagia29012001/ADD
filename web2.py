@@ -547,7 +547,7 @@ def main():
                                 if img_res is not None:
 
                                     img_res = cv2.cvtColor(img_res, cv2.COLOR_BGR2RGB)
-                                    st.image(img_bhyt, use_column_width=True)
+                                    st.image(img_res, use_column_width=True)
                                     df = results.pandas().xyxy[0]
                                     del df['class']
 
