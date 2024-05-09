@@ -619,7 +619,7 @@ def main():
                                                         # Trích xuất văn bản sử dụng pytesseract
                                                         text = pytesseract.image_to_string(image)
                                 
-                                                        if text=='Nam':
+                                                        if text:
                                                         # Hiển thị kết quả
                                                             st.write(text)
                                                             text_sex= "GIỚI TÍNH: "+text
