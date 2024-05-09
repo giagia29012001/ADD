@@ -457,6 +457,8 @@ def main():
                                     results.save()
 
                                     img_res = cv2.imread('./runs/detect/exp/image0.jpg')
+                                    img_res = cv2.cvtColor(img_res, cv2.COLOR_BGR2RGB)
+                                    st.image(img_res, use_column_width=True)
 
                                     df = results.pandas().xyxy[0]
                                     name_type=df['name'].item()
@@ -542,7 +544,6 @@ def main():
                                 if img_res is not None:
 
                                     img_res = cv2.cvtColor(img_res, cv2.COLOR_BGR2RGB)
-                                    st.image(img_res, use_column_width=True)
 
                                     df = results.pandas().xyxy[0]
                                     del df['class']
