@@ -484,8 +484,9 @@ def main():
 
                                         if not des:
                                             type='Không có dữ liệu để mô tả!'
-                                        st.header("Kết quả chuẩn đoán sơ bộ" +type)
-                                        
+                                            
+                                        st.header("Kết quả chuẩn đoán sơ bộ")
+                                        st.write(type)
                                         st.image(img_res, use_column_width=True)
 
                             else:
