@@ -440,7 +440,7 @@ def main():
                 file_img = st.file_uploader('Để hỗ trợ quá trình thăm khám bệnh. Vui lòng tải một hình ảnh hiện trạng da của bạn để chúng tôi đưa ra những chuẩn đoán ban đầu')
                 if file_img:
                     img = Image.open(file_img) 
-                file_img_bhyt = st.file_uploader('Vui lòng cung cấp thông tin bệnh nhân bằng cách tải một hình ảnh bảo hiểm y tế của bệnh nhân trên ứng dụng VISSID')    
+                file_img_bhyt = st.file_uploader('Vui lòng cung cấp thông tin bệnh nhân bằng cách tải một hình ảnh bảo hiểm y tế của bệnh nhân trên ứng dụng VssID')    
                 if file_img_bhyt:
                     img_bhyt = Image.open(file_img_bhyt)
     
