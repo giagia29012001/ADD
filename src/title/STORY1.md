@@ -1,7 +1,7 @@
 
 
 >**Bước 1**:
-Nhập mail của bạn (quan trong!!). 
+Nhập mail của bạn (quan trọng!!). 
 
 >**Bước 2**:
 Chọn thời gian khám bệnh "Chọn ngày", "Chọn lịch", "Chọn giờ".
@@ -10,7 +10,7 @@ Chọn thời gian khám bệnh "Chọn ngày", "Chọn lịch", "Chọn giờ".
 Tải một ảnh da liễu thể hiện tình trạng da của bạn
 
 >**Bước 4**:
-Tải một ảnh bảo hiểm y tế của bạn trên ứng dụng VISSID
+Tải một ảnh bảo hiểm y tế của bạn trên ứng dụng VssID
 
 >**Bước 5**:
 Nhấp chọn gửi thông tin
