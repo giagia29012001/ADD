@@ -458,7 +458,6 @@ def main():
 
                                     img_res = cv2.imread('./runs/detect/exp/image0.jpg')
                                     img_res = cv2.cvtColor(img_res, cv2.COLOR_BGR2RGB)
-                                    st.image(img_res, use_column_width=True)
 
                                     df = results.pandas().xyxy[0]
                                     name_type=df['name'].item()
@@ -485,7 +484,9 @@ def main():
 
                                         if not des:
                                             type='Không có dữ liệu để mô tả!'
-                                        st.write(type)
+                                        st.header("Kết quả chuẩn đoán sơ bộ" +type)
+                                        
+                                        st.image(img_res, use_column_width=True)
 
                             else:
                                 st.error('Không có dữ liệu. Vui lòng chọn một hình ảnh hiện trạng trên da')
