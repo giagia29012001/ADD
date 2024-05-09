@@ -443,8 +443,7 @@ def main():
                 file_img_bhyt = st.file_uploader('Vui lòng cung cấp thông tin bệnh nhân bằng cách tải một hình ảnh bảo hiểm y tế của bệnh nhân trên ứng dụng VISSID')    
                 if file_img_bhyt:
                     img_bhyt = Image.open(file_img_bhyt)
-                    img_res = cv2.cvtColor(img_bhyt, cv2.COLOR_BGR2RGB)
-                    st.image(img_res, use_column_width=True)
+                    st.image(img_bhyt, use_column_width=True)
     
                 recipe_button = st.button('Gửi thông tin.')
                 if recipe_button:
